@@ -1,8 +1,14 @@
 import firebase from "../firebase";
 
 const db = firebase.collection("/tutorials");
+const dbHumedadTierra = firebase.collection("/inv-data/Inv-001/sensores/humedad-tierra/valor");
 
 class TutorialDataService {
+  getHumedadTierra(){
+    console.log("****** Service - getHumedadTierra:", dbHumedadTierra)
+    return dbHumedadTierra;
+  }
+
   getAll() {
     return db;
   }
