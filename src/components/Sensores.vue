@@ -22,8 +22,7 @@
 import SensoresService from "../services/SensoresService";
 
 export default {
-  name: "humedad-tierra",
-  // components: { TutorialDetails },
+  name: "sensores",
   data() {
     return {
       sensorHumedadTierra: null,
@@ -35,6 +34,7 @@ export default {
   methods: {
     onDataChange(items) {
       items.forEach((item) => {
+        //FIXME: Corregir la llamada a la colección para que también lea los metadatos raza, banco y germinacion.
         let data = item.data();
         if(item.id == "humedad-tierra"){
           this.sensorHumedadTierra = data.valor;
