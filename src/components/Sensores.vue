@@ -1,48 +1,95 @@
 <template>
-  <div class="list row">
-    <div class="col-md-12">
-      <h3>Sensores</h3>
+  <div class="card w-100 h-50 mx-auto mt-2 shadow" id="cardSensores">
+    <div class="card-body">
+      <!-- container info planta -->
+      <div class="container">
+        <!-- Fila banco y genetica -->
+        <div class="row">
+          <!-- banco -->
+          <div class="col-sm-6">
+            <h6 class="float-left">Medical Seeds</h6>
+          </div>
+          <!-- genetica -->
+          <div class="col-sm-6">
+            <span class="badge badge-light float-right mr-4">INDICA</span>
+          </div>
+          <!-- nombre -->
+          <div class="col-sm-12">
+            <h3>Black Devil</h3>
+          </div>
+        </div>
+      </div>
+      <!-- container data y foto planta -->
+      <div class="container">
+        <div class="row" id="planta">
+          <!-- widgets luz y edad -->
+          <div class="col-sm-3 p-0">
+            <!-- luz -->
+            <div class="row widgetsLeft ml-4 mb-4 pb-4 pt-4">
+              <div class="col-sm-12 p-0">
+                <p class="linea1 m-0"><strong>18.5 Hr</strong></p>
+              </div>
+              <div class="col-sm-12 p-0">
+                <p class="linea2 m-0">08/05/2024 04:20</p>
+              </div>
+              <div class="col-sm-12 p-0">
+                <p class="linea3 m-0 encendida">ENCENDIDA</p>
+              </div>
+            </div>
+            <!-- edad -->
+            <div class="row widgetsLeft ml-4 mb-4 pb-4 pt-4">
+              <div class="col-sm-12 p-0">
+                <p class="linea1 m-0"><strong>1M y 2D</strong></p>
+              </div>
+              <div class="col-sm-12 p-0">
+                <p class="linea2 m-0">06/04/2024</p>
+              </div>
+              <div class="col-sm-12 p-0">
+                <p class="linea3 m-0 edad">EDAD</p>
+              </div>
+            </div>
+          </div>
+          <!-- imagen planta -->
+          <div class="col-sm-6">
+            <img src="../assets/images/weed.png" class="rounded mx-auto d-block w-75" alt="Planta">
+          </div>
+          <!-- widgets info -->
+          <div class="col-sm-3 p-0">
+            <!-- humedad del suelo -->
+            <div class="row widgetsRight">
+              <div class="col-sm-4">
+                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
+              </div>
+              <div class="col-sm-8">
+                <p class="linea1"><strong>20%</strong></p>
+                <p class="linea2"><span>HUMEDAD DEL SUELO</span></p>
+              </div>
+            </div>
+            <!-- temperatura ambiental -->
+            <div class="row widgetsRight">
+              <div class="col-sm-4">
+                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
+              </div>
+              <div class="col-sm-8">
+                <p class="linea1"><strong>31°</strong></p>
+                <p class="linea2"><span>TEMPERATURA AMBIENTAL</span></p>
+              </div>
+            </div>
+            <!-- humedad ambiental -->
+            <div class="row widgetsRight">
+              <div class="col-sm-4">
+                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
+              </div>
+              <div class="col-sm-8">
+                <p class="linea1"><strong>45°</strong></p>
+                <p class="linea2"><span>HUMEDAD AMBIENTAL</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h4>Humedad Tierra</h4>
-      <strong>{{ sensorHumedadSuelo }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Humedad Ambiente</h4>
-      <strong>{{ sensorHumedadAmbiente }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Temperatura Ambiente</h4>
-      <strong>{{ sensorTemperaturaAmbiente }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Luz</h4>
-      <strong>{{ sensorLuz }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Luz Update</h4>
-      <strong>{{ sensorLuzFecha }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Nombre</h4>
-      <strong>{{ plantaData.nombre }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Banco</h4>
-      <strong>{{ plantaData.banco }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Tipo</h4>
-      <strong>{{ plantaData.tipo }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Tipo Planta</h4>
-      <strong>{{ plantaData.tipo_planta }}</strong>
-    </div>
-    <div class="col-md-4">
-      <h4>Fecha Germinación</h4>
-      <strong>{{ plantaData.fecha_germinacion ? plantaData.fecha_germinacion.toDate().toLocaleDateString() : null }}</strong>
-    </div>
+
   </div>
 </template>
 
@@ -136,5 +183,28 @@ export default {
   text-align: left;
   max-width: 750px;
   margin: auto;
+}
+
+#cardSensores {
+  padding-top: 30px;
+  min-height: 80vh;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.widgetsLeft .linea2{
+  font-size: 0.85rem;
+}
+
+.widgetsLeft .linea3{
+  font-weight: 500;
+  color: #877900;
+}
+
+.widgetsLeft .linea3.encendida{
+  color: rgb(255 255 0) !important;
+}
+
+.widgetsLeft .linea3.edad{
+  color: rgb(68, 102, 227) !important;
 }
 </style>
