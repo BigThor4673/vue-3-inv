@@ -3,21 +3,11 @@
     <div class="card-body">
       <!-- container info planta -->
       <div class="container">
-        <!-- Fila banco y genetica -->
-        <div class="row">
-          <!-- banco -->
-          <div class="col-sm-6">
-            <h6 class="float-left">Medical Seeds</h6>
-          </div>
-          <!-- genetica -->
-          <div class="col-sm-6">
-            <span class="badge badge-light float-right mr-4">INDICA</span>
-          </div>
-          <!-- nombre -->
-          <div class="col-sm-12">
-            <h3>Black Devil</h3>
-          </div>
-        </div>
+        <header-planta
+          :banco="'Medical Seeds'"
+          :genetica="'INDICA'"
+          :nombre="'Black Devil'"
+        />
       </div>
       <!-- container data y foto planta -->
       <div class="container">
@@ -25,29 +15,21 @@
           <!-- widgets luz y edad -->
           <div class="col-sm-3 p-0">
             <!-- luz -->
-            <div class="row widgetsLeft ml-4 mb-4 pb-4 pt-4">
-              <div class="col-sm-12 p-0">
-                <p class="linea1 m-0"><strong>18.5 Hr</strong></p>
-              </div>
-              <div class="col-sm-12 p-0">
-                <p class="linea2 m-0">08/05/2024 04:20</p>
-              </div>
-              <div class="col-sm-12 p-0">
-                <p class="linea3 m-0 encendida">ENCENDIDA</p>
-              </div>
-            </div>
+            <indicador-widget
+              :linea1="'18.5 Hr'"
+              :linea2="'08/05/2024 04:20'"
+              :linea3="'ENCENDIDA'"
+              :clase="'encendida'"
+
+            />
             <!-- edad -->
-            <div class="row widgetsLeft ml-4 mb-4 pb-4 pt-4">
-              <div class="col-sm-12 p-0">
-                <p class="linea1 m-0"><strong>1M y 2D</strong></p>
-              </div>
-              <div class="col-sm-12 p-0">
-                <p class="linea2 m-0">06/04/2024</p>
-              </div>
-              <div class="col-sm-12 p-0">
-                <p class="linea3 m-0 edad">EDAD</p>
-              </div>
-            </div>
+            <indicador-widget
+              :linea1="'1M y 2D'"
+              :linea2="'06/04/2024'"
+              :linea3="'EDAD'"
+              :clase="'edad'"
+
+            />
           </div>
           <!-- imagen planta -->
           <div class="col-sm-6">
@@ -56,35 +38,23 @@
           <!-- widgets info -->
           <div class="col-sm-3 p-0">
             <!-- humedad del suelo -->
-            <div class="row widgetsRight">
-              <div class="col-sm-4">
-                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
-              </div>
-              <div class="col-sm-8">
-                <p class="linea1"><strong>20%</strong></p>
-                <p class="linea2"><span>HUMEDAD DEL SUELO</span></p>
-              </div>
-            </div>
+            <sensor-widget
+              :linea1="'20%'"
+              :linea2="'HUMEDAD DEL SUELO'"
+              :imagen="'humedad'"
+            />
             <!-- temperatura ambiental -->
-            <div class="row widgetsRight">
-              <div class="col-sm-4">
-                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
-              </div>
-              <div class="col-sm-8">
-                <p class="linea1"><strong>31°</strong></p>
-                <p class="linea2"><span>TEMPERATURA AMBIENTAL</span></p>
-              </div>
-            </div>
+            <sensor-widget
+              :linea1="'69°'"
+              :linea2="'TEMPERATURA AMBIENTAL'"
+              :imagen="'ambiente'"
+            />
             <!-- humedad ambiental -->
-            <div class="row widgetsRight">
-              <div class="col-sm-4">
-                <img src="../assets/vectors/humedad_suelo.svg" class="rounded mx-auto d-block w-100 imgWidget" alt="humedad suelo">
-              </div>
-              <div class="col-sm-8">
-                <p class="linea1"><strong>45°</strong></p>
-                <p class="linea2"><span>HUMEDAD AMBIENTAL</span></p>
-              </div>
-            </div>
+            <sensor-widget
+              :linea1="'45°'"
+              :linea2="'HUMEDAD AMBIENTAL'"
+              :imagen="'humedad'"
+            />
           </div>
         </div>
       </div>
@@ -95,9 +65,13 @@
 
 <script>
 import { db } from "../firebase";
+import sensorWidget from "./WidgetSensor";
+import indicadorWidget from "./WidgetIndicador";
+import headerPlanta from "./WidgetHeaderPlanta";
 
 export default {
   name: "sensores",
+  components: { sensorWidget, indicadorWidget, headerPlanta },
   data() {
     return {
       unsubscribeDocument: null,
@@ -200,11 +174,11 @@ export default {
   color: #877900;
 }
 
-.widgetsLeft .linea3.encendida{
+/* .widgetsLeft .linea3.encendida{
   color: rgb(255 255 0) !important;
 }
 
 .widgetsLeft .linea3.edad{
   color: rgb(68, 102, 227) !important;
-}
+} */
 </style>
