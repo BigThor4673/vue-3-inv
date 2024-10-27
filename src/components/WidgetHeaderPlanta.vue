@@ -1,16 +1,13 @@
 <template>
   <div class="row pl-2 mb-4 border-bottom border-dark">
-    <!-- banco -->
+    <!-- banco y nombre -->
     <div class="col-sm-6">
-      <h6 class="float-left font-weight-bolder">{{ banco }}</h6>
+      <h6 class="font-weight-bolder mb-0 text-dark">{{ banco }}</h6>
+      <h1 class="nombre-planta font-weight-bold">{{ nombre }}</h1>
     </div>
     <!-- genetica -->
     <div class="col-sm-6">
-      <h5><span class="badge badge-light float-right p-2">{{ genetica }}</span></h5>
-    </div>
-    <!-- nombre -->
-    <div class="col-sm-12">
-      <h1>{{ nombre }}</h1>
+      <h5><span class="badge badge-light float-right p-2 text-success">{{ genetica }}</span></h5>
     </div>
   </div>
 </template>
@@ -31,12 +28,17 @@ export default {
 </script>
 
 <style>
-/* Agrega tus estilos aquí */
-.widgetsLeft .linea3.encendida {
-  color: rgb(255 255 0) !important;
-}
+  /* Agrega tus estilos aquí */
+  .widgetsLeft .linea3.encendida {
+    color: rgb(255 255 0) !important;
+  }
 
-.widgetsLeft .linea3.edad {
-  color: rgb(68, 102, 227) !important;
-}
+  .widgetsLeft .linea3.edad {
+    color: rgb(68, 102, 227) !important;
+  }
+
+  .nombre-planta{
+    font-family: Georgia, serif !important;
+    font-size: 3rem;
+  }
 </style>

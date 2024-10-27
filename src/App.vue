@@ -31,6 +31,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Roboto", sans-serif;
   }
 
   #app {
@@ -39,80 +40,9 @@ export default {
     background: linear-gradient(-7deg, transparent 50%, #9CE5CB 50%);
   }
 
-
-    /* body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .container {
-      width: 100%;
-      height: 100vh;
-      max-height: 575px;
-      background: linear-gradient(-7deg, transparent 50%, #9CE5CB 50%);
-    }
-    .circle {
-      width: 100px;
-      height: 100px;
-      background-color: transparent;
-      border: 4px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      position: absolute;
-      top: 20%;
-      left: 30%;
-    }
-
-    .square {
-      width: 100px;
-      height: 100px;
-      background-color: transparent;
-      border: 5px solid rgba(255, 255, 255, 0.5);
-      position: absolute;
-      top: 40%;
-      left: 50%;
-    }
-
-    .triangle {
-      width: 0;
-      height: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-      border-bottom: 100px solid transparent;
-      border-bottom-color: rgba(255, 255, 255, 0.5);
-      position: absolute;
-      top: 60%;
-      left: 70%;
-    } */
-
 .navbar-brand img{
   width: 30px;
   height: 30px;
 }
 
-/* body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .container {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(-7deg, transparent 50%, #9CE5CB 50%);
-} */
-
-/* .container h2 {
-  text-align: center;
-  margin: 25px auto;
-}
-#app{
-  background-image: url("./assets/vectors/fondo_1.svg");
-  background-repeat: no-repeat, repeat;
-  background-color: #0e5d1f;
-} */
 </style>
