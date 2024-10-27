@@ -41,19 +41,19 @@
             <sensor-widget
               :linea1="'20%'"
               :linea2="'HUMEDAD DEL SUELO'"
-              :imagen="'humedad'"
+              :imagen="'humedad-suelo'"
             />
             <!-- temperatura ambiental -->
             <sensor-widget
               :linea1="'69°'"
               :linea2="'TEMPERATURA AMBIENTAL'"
-              :imagen="'ambiente'"
+              :imagen="'temperatura-ambiente'"
             />
             <!-- humedad ambiental -->
             <sensor-widget
               :linea1="'45°'"
               :linea2="'HUMEDAD AMBIENTAL'"
-              :imagen="'humedad'"
+              :imagen="'humedad-ambiente'"
             />
           </div>
         </div>

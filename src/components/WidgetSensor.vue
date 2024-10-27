@@ -17,17 +17,20 @@ export default {
   props: ["linea1", "linea2", "imagen"],
   data() {
     return {
-      imgHumedadSuelo: require('../assets/vectors/humedad_suelo.svg') ,
-      imgTempAmbiente: require('../assets/vectors/temp_ambiental.svg') 
+      imgHumedadSuelo: require('../assets/images/sensors/humedad-suelo.png') ,
+      imgHumedadAmbiente: require('../assets/images/sensors/humedad-ambiente.png') ,
+      imgTempAmbiente: require('../assets/images/sensors/temperatura-ambiente.png') 
     };
   },
   computed: {
     imagenUrl() {
       switch (this.imagen) {
-        case 'humedad':
+        case 'humedad-suelo':
           return this.imgHumedadSuelo;
-        case 'ambiente':
+        case 'temp-ambiente':
           return this.imgTempAmbiente;
+        case 'humedad-ambiente':
+          return this.imgHumedadAmbiente;
         default:
           return this.imgTempAmbiente;
       }
