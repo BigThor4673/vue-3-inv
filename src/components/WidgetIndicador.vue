@@ -1,13 +1,13 @@
 <template>
-  <div class="row widgetsLeft ml-4 mb-4 pb-4 pt-4">
+  <div class="row widgetsLeft mb-4 mt-5 pb-4 pt-4 text-center">
     <div class="col-sm-12 p-0">
-      <p class="linea1 m-0"><strong>{{ linea1 }}</strong></p>
+      <p class="linea1 m-0 h2"><strong>{{ linea1 }}</strong></p>
     </div>
     <div class="col-sm-12 p-0">
-      <p class="linea2 m-0">{{ linea2 }}</p>
+      <p class="linea2 m-0 font-weight-bold">{{ linea2 }}</p>
     </div>
     <div class="col-sm-12 p-0">
-      <p class="linea3 m-0" :class="clase">{{ linea3 }}</p>
+      <p class="linea3 m-0 font-weight-bold" :class="clase">{{ linea3 }}</p>
     </div>
   </div>
 </template>

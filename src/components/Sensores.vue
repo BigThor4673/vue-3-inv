@@ -36,7 +36,7 @@
             <img src="../assets/images/weed.png" class="rounded mx-auto d-block w-75" alt="Planta">
           </div>
           <!-- widgets info -->
-          <div class="col-sm-3 p-0">
+          <div class="col-sm-3 pl-0 pr-3">
             <!-- humedad del suelo -->
             <sensor-widget
               :linea1="'20%'"

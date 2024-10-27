@@ -1,12 +1,12 @@
 <template>
-  <div class="row widgetsRight">
-      <div class="col-sm-4">
+  <div class="row widgetsRight pl-4 pt-2 my-4 shadow rounded">
+      <div class="col-sm-4 my-auto px-0">
           <img :src="imagenUrl" class="rounded mx-auto d-block w-100 imgWidget"
               alt="humedad suelo">
       </div>
-      <div class="col-sm-8">
-          <p class="linea1"><strong>{{ linea1 }}</strong></p>
-          <p class="linea2"><span>{{ linea2 }}</span></p>
+      <div class="col-sm-8 pl-0">
+          <p class="linea1 mb-0 h2"><strong>{{ linea1 }}</strong></p>
+          <p class="linea2 text-monospace"><span>{{ linea2 }}</span></p>
       </div>
   </div>
 </template>
@@ -43,4 +43,7 @@ export default {
 
 <style>
 /* Agrega tus estilos aquí */
+  .widgetsRight { 
+    background-color: rgba(255, 255, 255, .5); 
+  }
 </style>

@@ -1,16 +1,16 @@
 <template>
-  <div class="row">
+  <div class="row pl-2 mb-4 border-bottom border-dark">
     <!-- banco -->
     <div class="col-sm-6">
-      <h6 class="float-left">{{ banco }}</h6>
+      <h6 class="float-left font-weight-bolder">{{ banco }}</h6>
     </div>
     <!-- genetica -->
     <div class="col-sm-6">
-      <span class="badge badge-light float-right mr-4">{{ genetica }}</span>
+      <h5><span class="badge badge-light float-right p-2">{{ genetica }}</span></h5>
     </div>
     <!-- nombre -->
     <div class="col-sm-12">
-      <h3>{{ nombre }}</h3>
+      <h1>{{ nombre }}</h1>
     </div>
   </div>
 </template>
