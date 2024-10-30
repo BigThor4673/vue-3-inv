@@ -4,9 +4,9 @@
       <!-- container info planta -->
       <div class="container">
         <header-planta
-          :banco="'Medical Seeds'"
-          :genetica="'INDICA'"
-          :nombre="'Black Devil'"
+          :banco="plantaData.banco"
+          :genetica="plantaData.tipo"
+          :nombre="plantaData.nombre"
         />
       </div>
       <!-- container data y foto planta -->
@@ -16,16 +16,17 @@
           <div class="col-sm-3 p-0">
             <!-- luz -->
             <indicador-widget
-              :linea1="'18.5 Hr'"
-              :linea2="'08/05/2024 04:20'"
-              :linea3="'ENCENDIDA'"
-              :clase="'encendida'"
+              :linea1="tiempo_luz"
+              :linea2="sensorLuzFecha"
+              :linea3="!sensorLuz ? 'APAGADA' : 'ENCENDIDA'"
+              :clase="!sensorLuz ? 'apagada' : 'encendida'"
+
 
             />
             <!-- edad -->
             <indicador-widget
-              :linea1="'1M y 2D'"
-              :linea2="'06/04/2024'"
+              :linea1="tiempo_edad_planta"
+              :linea2="plantaData.fecha_germinacion ? plantaData.fecha_germinacion.toDate().toLocaleDateString() : ''"
               :linea3="'EDAD'"
               :clase="'edad'"
 
@@ -39,19 +40,19 @@
           <div class="col-sm-3 pl-0 pr-3">
             <!-- humedad del suelo -->
             <sensor-widget
-              :linea1="'20%'"
+              :linea1="sensorHumedadSuelo+'%'"
               :linea2="'HUMEDAD DEL SUELO'"
               :imagen="'humedad-suelo'"
             />
             <!-- temperatura ambiental -->
             <sensor-widget
-              :linea1="'69°'"
+              :linea1="sensorTemperaturaAmbiente+'°'"
               :linea2="'TEMPERATURA AMBIENTAL'"
               :imagen="'temperatura-ambiente'"
             />
             <!-- humedad ambiental -->
             <sensor-widget
-              :linea1="'45°'"
+              :linea1="sensorHumedadAmbiente+'°'"
               :linea2="'HUMEDAD AMBIENTAL'"
               :imagen="'humedad-ambiente'"
             />
@@ -89,6 +90,56 @@ export default {
         fecha_germinacion: null
       },
     };
+  },
+  computed:{
+    tiempo_luz(){
+      if(!this.sensorLuzFecha){
+        return "-";
+      }
+
+      //Paso 0: Convertimos la fecha de cadena a objeto Date
+      const [fecha, tiempo] = this.sensorLuzFecha.split(" ");
+      const [dia, mes, año] = fecha.split("/").map(Number);
+      const [horas, minutos, segundos] = tiempo.split(":").map(Number);
+
+      // Creamos un objeto Date
+      const fechaEspecifica = new Date(año, mes - 1, dia, horas, minutos, segundos);
+
+      const fechaActual = new Date();
+
+      console.log("Computed, fechaActual: "+fechaActual);
+      console.log("Computed, fechaEspecifica: "+fechaEspecifica);
+
+      let diferenciaMilisegundos = fechaActual - fechaEspecifica;
+      console.log("Computed, diferenciaMilisegundos: "+diferenciaMilisegundos);
+
+      const hh = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60));
+      const mm = Math.floor((diferenciaMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
+
+      console.log(`${hh}h y ${mm}min`);
+      return `${hh}h ${mm}min`;
+    },
+    tiempo_edad_planta() {
+      const today = new Date();
+      let date = this.plantaData.fecha_germinacion ? this.plantaData.fecha_germinacion.toDate() : today
+  
+      // Ajustar la hora en ambas fechas a medianoche para evitar errores en la zona horaria
+      today.setHours(0, 0, 0, 0);
+      date.setHours(0, 0, 0, 0);
+
+      let months = (today.getFullYear() - date.getFullYear()) * 12 + (today.getMonth() - date.getMonth());
+      let days = today.getDate() - date.getDate();
+
+      // Si los días son negativos, reducir un mes y ajustar los días
+      if (days < 0) {
+        months -= 1;
+        // Obtener el último día del mes anterior de "today"
+        const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += previousMonth.getDate();
+      }
+
+      return `${months}M y ${days}d`;
+    }
   },
   methods: {
     fetchData() {

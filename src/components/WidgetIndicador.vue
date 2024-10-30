@@ -33,6 +33,10 @@ export default {
     color: rgb(255 255 0) !important;
   }
 
+  .widgetsLeft .linea3.apagada{
+    color: #6c757d !important;
+  }
+
   .widgetsLeft .linea3.edad{
     color: rgb(68, 102, 227) !important;
   }
