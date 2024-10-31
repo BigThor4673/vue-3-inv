@@ -9,8 +9,8 @@ const routes =  [
   // },
   {
     path: "/",
-    alias: "/sensores",
-    name: "sensores",
+    alias: "/planta",
+    name: "planta",
     component: () => import("./components/Sensores")
   },
   {
