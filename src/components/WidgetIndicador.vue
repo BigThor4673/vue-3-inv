@@ -1,10 +1,11 @@
 <template>
-  <div class="row widgetsLeft mb-4 mt-5 pb-4 pt-4 text-center">
+  <div class="row widgetsLeft mb-md-4 mt-md-5 pb-md-4 pt-md-4 text-center">
     <div class="col-sm-12 p-0">
-      <p class="linea1 m-0 h2"><strong>{{ linea1 }}</strong></p>
+      <p class="linea1 m-0 h4"><strong>{{ linea1 }}</strong></p>
     </div>
     <div class="col-sm-12 p-0">
-      <p class="linea2 m-0 font-weight-bold">{{ linea2 }}</p>
+      <!-- <p class="linea2 m-0 font-weight-bold">{{ linea2 }}</p> -->
+      <small class="m-0 font-weight-bold">{{ linea2 }}</small>
     </div>
     <div class="col-sm-12 p-0">
       <p class="linea3 m-0 font-weight-bold" :class="clase">{{ linea3 }}</p>

@@ -1,13 +1,17 @@
 <template>
   <div class="row pl-2 mb-4 border-bottom border-dark">
-    <!-- banco y nombre -->
-    <div class="col-sm-6">
-      <h6 class="font-weight-bolder mb-0 text-dark">{{ banco }}</h6>
-      <h1 class="nombre-planta font-weight-bold">{{ nombre }}</h1>
-    </div>
-    <!-- genetica -->
-    <div class="col-sm-6">
-      <h5><span class="badge badge-light float-right p-2 text-success">{{ genetica }}</span></h5>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-6">
+          <h6 class="font-weight-bolder mb-0 text-dark">{{ banco }}</h6>
+        </div>
+        <div class="col-6">
+          <h5><span class="badge badge-light float-right p-2 text-success">{{ genetica }}</span></h5>
+        </div>
+      </div>
+      <div class="row">
+        <h1 class="nombre-planta font-weight-bold">{{ nombre }}</h1>
+      </div>
     </div>
   </div>
 </template>

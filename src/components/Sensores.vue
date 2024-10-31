@@ -3,59 +3,53 @@
     <div class="card-body">
       <!-- container info planta -->
       <div class="container">
-        <header-planta
-          :banco="plantaData.banco"
-          :genetica="plantaData.tipo"
-          :nombre="plantaData.nombre"
-        />
+        <header-planta :banco="plantaData.banco" :genetica="plantaData.tipo" :nombre="plantaData.nombre" />
       </div>
       <!-- container data y foto planta -->
       <div class="container">
         <div class="row" id="planta">
           <!-- widgets luz y edad -->
           <div class="col-sm-3 p-0">
-            <!-- luz -->
-            <indicador-widget
-              :linea1="tiempo_luz"
-              :linea2="sensorLuzFecha"
-              :linea3="!sensorLuz ? 'APAGADA' : 'ENCENDIDA'"
-              :clase="!sensorLuz ? 'apagada' : 'encendida'"
-
-
-            />
-            <!-- edad -->
-            <indicador-widget
-              :linea1="tiempo_edad_planta"
-              :linea2="plantaData.fecha_germinacion ? plantaData.fecha_germinacion.toDate().toLocaleDateString() : ''"
-              :linea3="'EDAD'"
-              :clase="'edad'"
-
-            />
+            <div class="row">
+              <div class="col-md-12 col-6">
+                <!-- luz -->
+                <indicador-widget :linea1="tiempo_luz" :linea2="sensorLuzFecha"
+                  :linea3="!sensorLuz ? 'APAGADA' : 'ENCENDIDA'" :clase="!sensorLuz ? 'apagada' : 'encendida'" />
+              </div>
+              <div class="col-md-12 col-6">
+                <!-- edad -->
+                <indicador-widget :linea1="tiempo_edad_planta"
+                  :linea2="plantaData.fecha_germinacion ? plantaData.fecha_germinacion.toDate().toLocaleDateString() : ''"
+                  :linea3="'EDAD'" :clase="'edad'" />
+              </div>
+            </div>
           </div>
           <!-- imagen planta -->
           <div class="col-sm-6">
-            <img src="../assets/images/weed.png" class="rounded mx-auto d-block w-75" alt="Planta">
+            <img src="../assets/images/weed.png" class="rounded mx-auto d-block img-responsive" alt="Planta">
           </div>
           <!-- widgets info -->
           <div class="col-sm-3 pl-0 pr-3">
-            <!-- humedad del suelo -->
-            <sensor-widget
-              :linea1="sensorHumedadSuelo+'%'"
-              :linea2="'HUMEDAD DEL SUELO'"
-              :imagen="'humedad-suelo'"
-            />
-            <!-- temperatura ambiental -->
-            <sensor-widget
-              :linea1="sensorTemperaturaAmbiente+'°'"
-              :linea2="'TEMPERATURA AMBIENTAL'"
-              :imagen="'temperatura-ambiente'"
-            />
-            <!-- humedad ambiental -->
-            <sensor-widget
-              :linea1="sensorHumedadAmbiente+'°'"
-              :linea2="'HUMEDAD AMBIENTAL'"
-              :imagen="'humedad-ambiente'"
-            />
+            <div class="row">
+              <div class="col-sm-12 col-4 px-1">
+                <!-- humedad del suelo -->
+                <sensor-widget :linea1="sensorHumedadSuelo + '%'" :linea2="'HUMEDAD DEL SUELO'"
+                  :imagen="'humedad-suelo'" />
+              </div>
+              <div class="col-sm-12 col-4 px-1">
+                <!-- temperatura ambiental -->
+                <sensor-widget :linea1="sensorTemperaturaAmbiente + '°'" :linea2="'T° AMBIENTAL'"
+                  :imagen="'temperatura-ambiente'" />
+              </div>
+              <div class="col-sm-12 col-4 px-1">
+                <!-- humedad ambiental -->
+                <sensor-widget :linea1="sensorHumedadAmbiente + '°'" :linea2="'HUMEDAD AMBIENTAL'"
+                  :imagen="'humedad-ambiente'" />
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </div>
@@ -84,16 +78,16 @@ export default {
       sensorLuzFecha: null,
       plantaData: {
         nombre: null,
-        tipo: null, 
+        tipo: null,
         tipo_planta: null,
         banco: null,
         fecha_germinacion: null
       },
     };
   },
-  computed:{
-    tiempo_luz(){
-      if(!this.sensorLuzFecha){
+  computed: {
+    tiempo_luz() {
+      if (!this.sensorLuzFecha) {
         return "-";
       }
 
@@ -107,11 +101,11 @@ export default {
 
       const fechaActual = new Date();
 
-      console.log("Computed, fechaActual: "+fechaActual);
-      console.log("Computed, fechaEspecifica: "+fechaEspecifica);
+      console.log("Computed, fechaActual: " + fechaActual);
+      console.log("Computed, fechaEspecifica: " + fechaEspecifica);
 
       let diferenciaMilisegundos = fechaActual - fechaEspecifica;
-      console.log("Computed, diferenciaMilisegundos: "+diferenciaMilisegundos);
+      console.log("Computed, diferenciaMilisegundos: " + diferenciaMilisegundos);
 
       const hh = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60));
       const mm = Math.floor((diferenciaMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
@@ -122,7 +116,7 @@ export default {
     tiempo_edad_planta() {
       const today = new Date();
       let date = this.plantaData.fecha_germinacion ? this.plantaData.fecha_germinacion.toDate() : today
-  
+
       // Ajustar la hora en ambas fechas a medianoche para evitar errores en la zona horaria
       today.setHours(0, 0, 0, 0);
       date.setHours(0, 0, 0, 0);
@@ -161,20 +155,20 @@ export default {
         this.unsubscribeSensores = docRef.collection('sensores').onSnapshot(sensoresSnapshot => {
           sensoresSnapshot.forEach(doc => {
             let itemData = doc.data();
-            if(doc.id == "humedad-ambiente"){
+            if (doc.id == "humedad-ambiente") {
               this.sensorHumedadAmbiente = itemData.valor;
             }
-            else if(doc.id == "humedad-suelo"){
+            else if (doc.id == "humedad-suelo") {
               this.sensorHumedadSuelo = itemData.valor;
             }
-            else if(doc.id == "temperatura-ambiente"){
+            else if (doc.id == "temperatura-ambiente") {
               this.sensorTemperaturaAmbiente = itemData.valor;
             }
-            else if(doc.id == "luz"){
+            else if (doc.id == "luz") {
               this.sensorLuz = itemData.valor;
               let luzFecha = itemData.fecha_update.toDate().toLocaleDateString()
               let luzHora = itemData.fecha_update.toDate().toLocaleTimeString()
-              this.sensorLuzFecha = luzFecha+" "+luzHora;
+              this.sensorLuzFecha = luzFecha + " " + luzHora;
             }
           });
         }, error => {
@@ -216,13 +210,23 @@ export default {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.widgetsLeft .linea2{
+.widgetsLeft .linea2 {
   font-size: 0.85rem;
 }
 
-.widgetsLeft .linea3{
+.widgetsLeft .linea3 {
   font-weight: 500;
   color: #877900;
+}
+
+.img-responsive {
+  width: 50%; /* 50% de ancho en dispositivos móviles */
+}
+
+@media (min-width: 992px) { /* Punto de interrupción para pantallas grandes (computadoras) */
+  .img-responsive {
+    width: 75%; /* 75% de ancho en pantallas grandes */
+  }
 }
 
 /* .widgetsLeft .linea3.encendida{
