@@ -1,4 +1,4 @@
-# Vue 3 Firestore example: CRUD Application -
+# Vue 3 Firestore example: CRUD Application --
 
 Build a Vue.js 3 Firestore CRUD example with Firebase Cloud Firestore Database, display and modify data using Axios and Vue Router.
 - Each Tutorial has id, title, description, published status.
