@@ -6,9 +6,9 @@
         <li class="nav-item">
           <router-link to="/planta" class="nav-link">Planta 🪴</router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link to="/calendario" class="nav-link">Calendario 📅</router-link>
-        </li>
+        </li> -->
       </div>
     </nav>
 
