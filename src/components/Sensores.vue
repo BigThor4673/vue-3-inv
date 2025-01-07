@@ -90,27 +90,37 @@ export default {
       if (!this.sensorLuzFecha) {
         return "-";
       }
-
+      // console.log("Computed, sensorLuzFecha: " + this.sensorLuzFecha);
       //Paso 0: Convertimos la fecha de cadena a objeto Date
       const [fecha, tiempo] = this.sensorLuzFecha.split(" ");
+      // console.log("Computed, fecha: " + fecha);
+      // console.log("Computed, tiempo: " + tiempo);
+
       const [dia, mes, año] = fecha.split("/").map(Number);
+      // console.log("Computed, dia: " + dia);
+      // console.log("Computed, mes: " + mes);
+      // console.log("Computed, año: " + año);
+
       const [horas, minutos, segundos] = tiempo.split(":").map(Number);
+      // console.log("Computed, horas: " + horas);
+      // console.log("Computed, minutos: " + minutos);
+      // console.log("Computed, segundos: " + segundos);
 
       // Creamos un objeto Date
       const fechaEspecifica = new Date(año, mes - 1, dia, horas, minutos, segundos);
 
       const fechaActual = new Date();
 
-      console.log("Computed, fechaActual: " + fechaActual);
-      console.log("Computed, fechaEspecifica: " + fechaEspecifica);
+      // console.log("Computed, fechaActual: " + fechaActual);
+      // console.log("Computed, fechaEspecifica: " + fechaEspecifica);
 
       let diferenciaMilisegundos = fechaActual - fechaEspecifica;
-      console.log("Computed, diferenciaMilisegundos: " + diferenciaMilisegundos);
+      // console.log("Computed, diferenciaMilisegundos: " + diferenciaMilisegundos);
 
       const hh = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60));
       const mm = Math.floor((diferenciaMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
 
-      console.log(`${hh}h y ${mm}min`);
+      // console.log(`${hh}h y ${mm}min`);
       return `${hh}h ${mm}min`;
     },
     tiempo_edad_planta() {
@@ -165,10 +175,17 @@ export default {
               this.sensorTemperaturaAmbiente = itemData.valor;
             }
             else if (doc.id == "luz") {
+              console.log("======= LUZ ======== ");
+              console.log("itemData: "+JSON.stringify(itemData));
               this.sensorLuz = itemData.valor;
-              let luzFecha = itemData.fecha_update.toDate().toLocaleDateString()
-              let luzHora = itemData.fecha_update.toDate().toLocaleTimeString()
+              console.log("SensorLuz: " + this.sensorLuz);
+              
+              let luzFecha = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleDateString() : null;
+              console.log("LuzFecha: " + luzFecha);
+              let luzHora = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleTimeString() : null;
+              console.log("LuzHora: " + luzHora);
               this.sensorLuzFecha = luzFecha + " " + luzHora;
+              console.log("SensorLuzFecha: " + this.sensorLuzFecha);
             }
           });
         }, error => {
