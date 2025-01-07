@@ -14,7 +14,7 @@ db = firestore.client()
 # Función para leer el input y enviar los datos a Firestore
 def send_to_firestore(document_name, data):
     doc_ref = db.collection("inv-data/Inv-001/maceteros/ma-z01/sensores").document(document_name)
-    pre_data = {"valor": data, "fecha-update": firestore.SERVER_TIMESTAMP}
+    pre_data = {"valor": data, "fecha_update": firestore.SERVER_TIMESTAMP}
     doc_ref.set(pre_data)
     print(f"Data sent to Firestore: {pre_data}")
 
@@ -42,7 +42,7 @@ def main():
         send_to_firestore("humedad-suelo", humedad_suelo)
 
         # if current_value != last_value:
-            # send_to_firestore("humedad-suelo", {"valor": current_value, "fecha-update": firestore.SERVER_TIMESTAMP})
+            # send_to_firestore("humedad-suelo", {"valor": current_value, "fecha_update": firestore.SERVER_TIMESTAMP})
             
         last_value = current_value
         
