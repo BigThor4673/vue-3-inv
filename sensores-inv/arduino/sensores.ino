@@ -60,7 +60,7 @@ void loop()
     // delay(2000);
     /***** YL69 *****/
 
-    Serial.print("{'temperatura-ambiente': "+DHT.temperature+", 'humedad-ambiente': "+DHT.humidity+", 'luz': luzValor+", 'humedad-suelo': sueloValue+"}");
+    Serial.print("{'temperatura-ambiente': "+DHT.temperature+", 'humedad-ambiente': "+DHT.humidity+", 'luz': "+luzValor+", 'humedad-suelo': "+sueloValue+"}");
     delay(5000);
 }
 

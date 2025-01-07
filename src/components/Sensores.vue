@@ -166,8 +166,8 @@ export default {
             }
             else if (doc.id == "luz") {
               this.sensorLuz = itemData.valor;
-              let luzFecha = itemData.fecha_update.toDate().toLocaleDateString()
-              let luzHora = itemData.fecha_update.toDate().toLocaleTimeString()
+              let luzFecha = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleDateString() : null;
+              let luzHora = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleTimeString() : null;
               this.sensorLuzFecha = luzFecha + " " + luzHora;
             }
           });
