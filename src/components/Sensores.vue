@@ -93,29 +93,23 @@ export default {
       // console.log("Computed, sensorLuzFecha: " + this.sensorLuzFecha);
       //Paso 0: Convertimos la fecha de cadena a objeto Date
       const [fecha, tiempo] = this.sensorLuzFecha.split(" ");
-      // console.log("Computed, fecha: " + fecha);
-      // console.log("Computed, tiempo: " + tiempo);
-
       const [dia, mes, año] = fecha.split("/").map(Number);
-      // console.log("Computed, dia: " + dia);
-      // console.log("Computed, mes: " + mes);
-      // console.log("Computed, año: " + año);
-
       const [horas, minutos, segundos] = tiempo.split(":").map(Number);
-      // console.log("Computed, horas: " + horas);
-      // console.log("Computed, minutos: " + minutos);
-      // console.log("Computed, segundos: " + segundos);
 
       // Creamos un objeto Date
       const fechaEspecifica = new Date(año, mes - 1, dia, horas, minutos, segundos);
+      console.log("FechaEspecifica: " + fechaEspecifica);
+
+      // Convertimos la fecha a la zona horaria de Chile manualmente
+      const timeZoneOffset = -3 * 60; // GMT-3 para Chile
+      const fechaEspecificaCL = new Date(fechaEspecifica.getTime() + timeZoneOffset * 60 * 1000);
+      console.log("FechaEspecificaCL: " + fechaEspecificaCL);
 
       const fechaActual = new Date();
+      const fechaActualCL = new Date(fechaActual.getTime() + timeZoneOffset * 60 * 1000);
+      console.log("FechaActualCL: " + fechaActualCL);
 
-      // console.log("Computed, fechaActual: " + fechaActual);
-      // console.log("Computed, fechaEspecifica: " + fechaEspecifica);
-
-      let diferenciaMilisegundos = fechaActual - fechaEspecifica;
-      // console.log("Computed, diferenciaMilisegundos: " + diferenciaMilisegundos);
+      let diferenciaMilisegundos = fechaActualCL - fechaEspecificaCL;
 
       const hh = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60));
       const mm = Math.floor((diferenciaMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
