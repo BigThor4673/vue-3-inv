@@ -33,12 +33,12 @@
             <div class="row">
               <div class="col-sm-12 col-4 px-1">
                 <!-- humedad del suelo -->
-                <sensor-widget :linea1="sensorHumedadSuelo + '%'" :linea2="'HUMEDAD DEL SUELO'"
+                <sensor-widget :linea1="sensorHumedadSuelo + '%'" :linea2="'HUMEDAD SUELO'"
                   :imagen="'humedad-suelo'" />
               </div>
               <div class="col-sm-12 col-4 px-1">
                 <!-- temperatura ambiental -->
-                <sensor-widget :linea1="sensorTemperaturaAmbiente + '°'" :linea2="'T° AMBIENTAL'"
+                <sensor-widget :linea1="sensorTemperaturaAmbiente + '°'" :linea2="'TEMPERATURA AMBIENTAL'"
                   :imagen="'temperatura-ambiente'" />
               </div>
               <div class="col-sm-12 col-4 px-1">

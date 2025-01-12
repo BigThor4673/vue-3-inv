@@ -10,6 +10,7 @@
           <p class="linea1 mb-0 h4 font-weight-bold mx-auto text-center">{{ linea1 }}</p>
           <!-- <p class="linea2 text-monospace h5">{{ linea2 }}</p> -->
           <p class="linea2 d-none d-sm-block text-center"><small class="text-monospace">{{ linea2 }}</small></p>
+          <small class="linea2 d-block d-sm-none text-center text-monospace minitexto">{{ linea2 }}</small>
       </div>
   </div>
 </template>
@@ -48,5 +49,9 @@ export default {
 /* Agrega tus estilos aquí */
   .widgetsRight { 
     background-color: rgba(255, 255, 255, .5); 
+  }
+
+  .minitexto {
+    font-size: 0.6rem;
   }
 </style>
