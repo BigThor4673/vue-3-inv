@@ -1,3 +1,4 @@
+import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 import time
@@ -13,9 +14,12 @@ db = firestore.client()
 
 # Función para leer el input y enviar los datos a Firestore
 def send_to_firestore(document_name, data):
+    #Almacenar en una variable el valor de la fecha actual en formato dd/MM/yyyy HH:mm
+    dateStringActual = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+    
     doc_ref = db.collection("inv-data/Inv-001/maceteros/ma-z01/sensores").document(document_name)
-    pre_data = {"valor": data, "fecha_update": firestore.SERVER_TIMESTAMP}
-    doc_ref.set(pre_data)
+    pre_data = {"valor": data, "fecha_update": firestore.SERVER_TIMESTAMP, "fecha_string": dateStringActual}
+    doc_ref.update(pre_data)
     print(f"Data sent to Firestore: {pre_data}")
 
 # Simula la lectura de un input que cambia su valor

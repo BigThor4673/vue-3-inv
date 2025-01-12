@@ -90,25 +90,18 @@ export default {
       if (!this.sensorLuzFecha) {
         return "-";
       }
-      console.log("Computed, sensorLuzFecha: " + this.sensorLuzFecha);
 
       // Convertir el string a un formato de fecha compatible con JavaScript
       const [datePart, timePart] = this.sensorLuzFecha.split(' ');
       const [day, month, year] = datePart.split('/');
       const formattedDateStr = `${year}-${month}-${day}T${timePart}:00`;
-      console.log("FormattedDateStr: " + formattedDateStr);
 
       const sensorLuzFecha = new Date(formattedDateStr);
       const now = new Date();
-      console.log("SensorLuzFecha: " + sensorLuzFecha);
-      console.log("Now: " + now);
 
       const diffMs = now - sensorLuzFecha;
       const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
       const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-      console.log("DiffMs: " + diffMs);
-      console.log("DiffHrs: " + diffHrs);
-      console.log("DiffMins: " + diffMins);
 
       return `${diffHrs}h ${diffMins}min`;
     },
