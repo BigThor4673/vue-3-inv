@@ -90,32 +90,28 @@ export default {
       if (!this.sensorLuzFecha) {
         return "-";
       }
-      // console.log("Computed, sensorLuzFecha: " + this.sensorLuzFecha);
-      //Paso 0: Convertimos la fecha de cadena a objeto Date
-      const [fecha, tiempo] = this.sensorLuzFecha.split(" ");
-      const [dia, mes, año] = fecha.split("/").map(Number);
-      const [horas, minutos, segundos] = tiempo.split(":").map(Number);
+      console.log("Computed, sensorLuzFecha: " + this.sensorLuzFecha);
 
-      // Creamos un objeto Date
-      const fechaEspecifica = new Date(año, mes - 1, dia, horas, minutos, segundos);
-      console.log("FechaEspecifica: " + fechaEspecifica);
+      // Convertir el string a un formato de fecha compatible con JavaScript
+      // const [datePart, timePart] = this.sensorLuzFecha.split(' ');
+      // const [day, month, year] = datePart.split('-');
+      // const formattedDateStr = `${year}-${month}-${day}T${timePart}:00`;
+      // console.log("FormattedDateStr: " + formattedDateStr);
 
-      // Convertimos la fecha a la zona horaria de Chile manualmente
-      const timeZoneOffset = -3 * 60; // GMT-3 para Chile
-      const fechaEspecificaCL = new Date(fechaEspecifica.getTime() + timeZoneOffset * 60 * 1000);
-      console.log("FechaEspecificaCL: " + fechaEspecificaCL);
+      // const sensorLuzFecha = new Date(formattedDateStr);
+      // const now = new Date();
+      // console.log("SensorLuzFecha: " + sensorLuzFecha);
+      // console.log("Now: " + now);
 
-      const fechaActual = new Date();
-      const fechaActualCL = new Date(fechaActual.getTime() + timeZoneOffset * 60 * 1000);
-      console.log("FechaActualCL: " + fechaActualCL);
-
-      let diferenciaMilisegundos = fechaActualCL - fechaEspecificaCL;
-
-      const hh = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60));
-      const mm = Math.floor((diferenciaMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
-
-      // console.log(`${hh}h y ${mm}min`);
-      return `${hh}h ${mm}min`;
+      // const diffMs = now - sensorLuzFecha;
+      // const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
+      // const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      // console.log("DiffMs: " + diffMs);
+      // console.log("DiffHrs: " + diffHrs);
+      // console.log("DiffMins: " + diffMins);
+      const diffHrs = 123;
+      const diffMins = 456;
+      return `${diffHrs}h ${diffMins}min`;
     },
     tiempo_edad_planta() {
       const today = new Date();
@@ -174,12 +170,14 @@ export default {
               this.sensorLuz = itemData.valor;
               console.log("SensorLuz: " + this.sensorLuz);
               
-              let luzFecha = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleDateString() : null;
-              console.log("LuzFecha: " + luzFecha);
-              let luzHora = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleTimeString() : null;
-              console.log("LuzHora: " + luzHora);
-              this.sensorLuzFecha = luzFecha + " " + luzHora;
+              // let luzFecha = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleDateString() : null;
+              // console.log("LuzFecha: " + luzFecha);
+              // let luzHora = itemData.fecha_update ? itemData.fecha_update.toDate().toLocaleTimeString() : null;
+              // console.log("LuzHora: " + luzHora);
+              // this.sensorLuzFecha = luzFecha + " " + luzHora;
+              this.sensorLuzFecha = itemData.fecha_string;
               console.log("SensorLuzFecha: " + this.sensorLuzFecha);
+
             }
           });
         }, error => {
