@@ -42,19 +42,20 @@ def send_to_firestore(document_name, data):
     doc_ref = db.collection("inv-data/Inv-001/maceteros/ma-z01/sensores").document(document_name)
     pre_data = {"valor": data, "fecha_update": firestore.SERVER_TIMESTAMP, "fecha_string": dateStringActual}
     doc_ref.update(pre_data)
-    print(f"Data sent to Firestore: {pre_data}")
+    # print(f"Data sent to Firestore: {pre_data}")
 
 # Simula la lectura de un input que cambia su valor
 def read_input():
     # return random.randint(0, 100)
     text = '{"temperatura-ambiente": '+str(random.randint(10, 40))+', "humedad-ambiente": '+str(random.randint(0, 30))+', "luz": '+str(random.randint(0, 1))+', "humedad-suelo": '+str(random.randint(0, 100))+'}'
-    print(f"Data read from input: {text}")
+
+    print(f"Lectura de input: {text}")
     return text
 
 def lastValueSensorSqlite(nombre_sensor):
     db = sqlite3.connect('sensores.db')
     cursor = db.cursor()
-    cursor.execute("SELECT valor FROM sensores_registros sr JOIN sensores s ON sr.id_sensor = s.id WHERE s.nombre = ? ORDER BY sr.fecha_registro DESC LIMIT 1", (nombre_sensor,))
+    cursor.execute("SELECT sr.valor FROM sensores_registros sr JOIN sensores s ON sr.id_sensor = s.id WHERE s.nombre = ? ORDER BY sr.id DESC LIMIT 1", (nombre_sensor,))
     result = cursor.fetchone()
     current_value = result[0] if result is not None else None
     db.close()
@@ -71,46 +72,54 @@ def insertValueSensorSqlite(nombre_sensor, valor, fecha):
 def main():
     while True:
         dateStringActual = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
-        print(f"***** Reading input at: {dateStringActual}")
+        print(f"@@@@@ Fecha lectura de input: {dateStringActual}")
         current_value = json.loads(read_input())
 
         temperatura_ambiente = current_value['temperatura-ambiente']
         humedad_ambiente = current_value['humedad-ambiente']
-        luz = True if current_value['luz'] == 1 else False
+        luz = current_value['luz']
         humedad_suelo = current_value['humedad-suelo']
 
-        # last_value = lastValueSensorSqlite("temperatura-ambiente")
-        # if temperatura_ambiente != last_value:
-        #     insertValueSensorSqlite("temperatura-ambiente", temperatura_ambiente, dateStringActual)
-        #     send_to_firestore("temperatura-ambiente", temperatura_ambiente)
-        #     print(f"***** temperatura-ambiente sent to Firestore: {temperatura_ambiente}")
+        last_value = lastValueSensorSqlite("temperatura-ambiente")
+        if temperatura_ambiente != last_value:
+            insertValueSensorSqlite("temperatura-ambiente", temperatura_ambiente, dateStringActual)
+            send_to_firestore("temperatura-ambiente", temperatura_ambiente)
+            print(f"***** Firestore temperatura-ambiente: {temperatura_ambiente}, antes: {last_value}")
+        else:
+            print(f"xxxxx Los valores de TEMPERATURA-AMBIENTE son iguales", temperatura_ambiente, last_value)
+        
 
-        # last_value = lastValueSensorSqlite("humedad-ambiente")
-        # if humedad_ambiente != last_value:
-        #     insertValueSensorSqlite("humedad-ambiente", humedad_ambiente, dateStringActual)
-        #     send_to_firestore("humedad-ambiente", humedad_ambiente)
-        #     print(f"***** humedad-ambiente sent to Firestore: {humedad_ambiente}")
+        last_value = lastValueSensorSqlite("humedad-ambiente")
+        if humedad_ambiente != last_value:
+            insertValueSensorSqlite("humedad-ambiente", humedad_ambiente, dateStringActual)
+            send_to_firestore("humedad-ambiente", humedad_ambiente)
+            print(f"***** Firestore humedad-ambiente: {humedad_ambiente}, antes: {last_value}")
+        else:
+            print(f"xxxxx Los valores de HUMEDAD-AMBIENTE son iguales", humedad_ambiente, last_value)
 
         last_value = lastValueSensorSqlite("luz")
-        luz_parsed = 0 if luz == False else 1
-        print("********* ----- sensor de luz", luz_parsed, last_value)
-        if luz_parsed != last_value:
-            print("Los valores son distintos", luz_parsed, last_value)
-            insertValueSensorSqlite("luz", luz_parsed, dateStringActual)
-            send_to_firestore("luz", luz)
-            print(f"***** luz sent to Firestore: {luz}")
+        if luz != last_value:
+            insertValueSensorSqlite("luz", luz, dateStringActual)
+            luzFirestore = True if luz == 1 else False
+            send_to_firestore("luz", luzFirestore)
+            print(f"***** Firestore luz: {luzFirestore}, antes: {last_value}")
         else:
-            print("Los valores son iguales", luz_parsed, last_value)
+            print(f"xxxxx Los valores de LUZ son iguales", luz, last_value)
 
-        # last_value = lastValueSensorSqlite("humedad-suelo")
-        # if humedad_suelo != last_value:
-        #     insertValueSensorSqlite("humedad-suelo", humedad_suelo, dateStringActual)
-        #     send_to_firestore("humedad-suelo", humedad_suelo)
-        #     print(f"***** humedad-suelo sent to Firestore: {humedad_suelo}")
+        last_value = lastValueSensorSqlite("humedad-suelo")
+        if humedad_suelo != last_value:
+            insertValueSensorSqlite("humedad-suelo", humedad_suelo, dateStringActual)
+            send_to_firestore("humedad-suelo", humedad_suelo)
+            print(f"***** Firestore humedad-suelo: {humedad_suelo}, antes: {last_value}")
+        else:
+            print(f"xxxxx Los valores de HUMEDAD-SUELO son iguales", humedad_suelo, last_value)
 
         
-        # Espera 5 segundo antes de leer el input nuevamente
-        time.sleep(5)  
+        # Tiempo de espera antes del loop
+        wait_time = 5
+        print(f"========== Esperando {wait_time} segundos... ==========")
+        print()
+        time.sleep(wait_time)  
 
 if __name__ == "__main__":
     main()
