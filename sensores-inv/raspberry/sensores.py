@@ -7,6 +7,10 @@ import random
 import json
 import os
 from dotenv import load_dotenv
+import serial
+
+#Abrimos el puerto serie
+ser = serial.Serial('COM3', 9600, timeout=1)
 
 # Cargar las variables de entorno desde el archivo .env en el directorio superior
 load_dotenv(dotenv_path='../../.env')
@@ -47,8 +51,13 @@ def send_to_firestore(document_name, data):
 # Simula la lectura de un input que cambia su valor
 def read_input():
     # return random.randint(0, 100)
-    text = '{"temperatura-ambiente": '+str(random.randint(10, 40))+', "humedad-ambiente": '+str(random.randint(0, 30))+', "luz": '+str(random.randint(0, 1))+', "humedad-suelo": '+str(random.randint(0, 100))+'}'
-
+    # text = '{"temperatura-ambiente": '+str(random.randint(10, 40))+', "humedad-ambiente": '+str(random.randint(0, 30))+', "luz": '+str(random.randint(0, 1))+', "humedad-suelo": '+str(random.randint(0, 100))+'}'
+    text = None
+    while text is None:
+        if ser.in_waiting > 0:
+            text = ser.readline().decode('utf-8').rstrip()
+        time.sleep(1)
+    
     print(f"Lectura de input: {text}")
     return text
 
@@ -116,7 +125,7 @@ def main():
 
         
         # Tiempo de espera antes del loop
-        wait_time = 5
+        wait_time = 1
         print(f"========== Esperando {wait_time} segundos... ==========")
         print()
         time.sleep(wait_time)  
