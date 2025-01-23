@@ -21,18 +21,11 @@ void setup()
 
 void loop()
 {
-    //Genera un array de dos posiciones para almacenar el nombre del sensor en la primera posición, y el valor del sensor en la segunda.
-    // String sensorData[2];
-    // sensorData[0] = "DHT11";
-    // sensorData[1] = "Temperature = " + String(DHT.temperature) + " Humidity = " + String(DHT.humidity);
-    // Serial.println(sensorData[0] + " " + sensorData[1]);
-
     /*************************************************************/
     /***** DHT11: Lee la temperatura y la humedad ambiental ******/
     /*************************************************************/
     int chk = DHT.read11(DHT11_PIN);
     // Serial.print("{'temperatura-ambiente': "+DHT.temperature+", 'humedad-ambiente': "+DHT.humidity+"}");
-    // delay(2000);
     /*********************** DHT11 ******************************/
 
     /***********************************************************************/
@@ -48,8 +41,6 @@ void loop()
         luzValor = 0;
     }
     // Serial.println("{'luz': luzValor}");
-    // Serial.println(fotoValor);
-    // delay(2000); 
     /******************* FOTORESISTENCIA ***********************************/
 
     /*********************************************/
@@ -57,15 +48,8 @@ void loop()
     /*********************************************/
     sueloValue = analogRead(rainPin);
     // Serial.println("{ 'humedad-suelo': sueloValue }");
-    // if(sueloValue < thresholdValue){
-    // }
-    // else {
-    //     Serial.println(" - Time to water your plant");
-    // }
-    // delay(2000);
     /**************** YL69 **********************/
 
-    Serial.print("{'temperatura-ambiente': "+DHT.temperature+", 'humedad-ambiente': "+DHT.humidity+", 'luz': "+luzValor+", 'humedad-suelo': "+sueloValue+"}");
-    delay(5000);
+    Serial.println("{\"temperatura-ambiente\": " + String(DHT.temperature) + ", \"humedad-ambiente\": " + String(DHT.humidity) + ", \"luz\": " + String(luzValor) + ", \"humedad-suelo\": " + String(sueloValue) + "}");
+    delay(2000);
 }
-
