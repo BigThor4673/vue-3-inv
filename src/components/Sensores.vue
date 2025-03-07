@@ -1,5 +1,6 @@
 <template>
-  <div class="card w-100 h-50 mx-auto mt-2 shadow" id="cardSensores">
+  <div class="container">
+    <div class="card w-100 h-50 mx-auto mt-2 shadow" id="cardSensores">
     <div class="card-body">
       <!-- container info planta -->
       <div class="container">
@@ -55,6 +56,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 </template>
 
