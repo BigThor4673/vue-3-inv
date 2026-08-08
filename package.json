@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
     "building": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
-    "lint": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service lint"
+    "lint": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service lint",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "bootstrap": "^4.6.0",
