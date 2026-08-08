@@ -26,7 +26,7 @@
           </div>
           <!-- imagen planta -->
           <div class="col-sm-6">
-            <img src="../assets/images/weed.png" class="rounded mx-auto d-block img-responsive" alt="Planta">
+            <img src="../assets/images/tomates.jpg" class="rounded mx-auto d-block img-responsive" alt="Planta">
           </div>
           <!-- widgets info -->
           <div class="col-sm-3 pl-0 pr-3">
